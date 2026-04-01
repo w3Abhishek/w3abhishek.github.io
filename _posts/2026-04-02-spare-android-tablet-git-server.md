@@ -1,6 +1,6 @@
 ---
 title: "Your Spare Android Tablet Can Host Git. Here's How."
-date: 2026-04-02 10:00:00 +0530
+date: 2026-04-01 10:00:00 +0530
 categories: [Projects, Self-Hosting]
 tags: [android, termux, forgejo, git, self-hosting, cloudflare, tailscale, linux]
 image:
