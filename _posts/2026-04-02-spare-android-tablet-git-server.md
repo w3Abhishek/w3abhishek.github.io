@@ -4,7 +4,7 @@ date: 2026-04-01 10:00:00 +0530
 categories: [Projects, Self-Hosting]
 tags: [android, termux, forgejo, git, self-hosting, cloudflare, tailscale, linux]
 image:
-  path: https://github.com/user-attachments/assets/96993b82-a0ce-4526-bb8a-68cdf12ac6f3
+  path: https://github.com/user-attachments/assets/51dbbc15-6c29-4b2c-9653-97d04b09c17d
   alt: "Self Hosted Git Server Meme"
 description: "I had a tablet collecting dust. I had a weekend. Bad combination. Here's how I ran a full Git server on an Android tablet using Termux, Forgejo, and Cloudflare Tunnel."
 ---
