@@ -1,14 +1,13 @@
 ---
 title: "X3Sync: Federating Free Cloud Storage with Zero-Knowledge Encryption"
 date: 2026-06-30 12:00:00 +0530
+categories: [research, systems]
+tags: [zero-knowledge, cloudflare-workers, cloud-storage, encryption, research]
 image:
   path: https://i.ibb.co/whw826cD/a9a8533cd3f519ab8928ef5696f16f9a.jpg
   alt: "Server racks in a data center"
-categories: [research, systems]
-tags: [zero-knowledge, cloudflare-workers, cloud-storage, encryption, research]
+description: "X3Sync: a research proof-of-concept federating free-tier cloud storage (Google Drive, Dropbox, Koofr) into a zero-knowledge encrypted namespace on Cloudflare Workers."
 ---
-
-## TL;DR
 
 X3Sync is a research proof-of-concept I built that aggregates free-tier cloud storage (Google Drive, Dropbox, Koofr) into a single zero-knowledge encrypted namespace, coordinated entirely on Cloudflare Workers. Paper is out, preprint is live, MDPI submission is in.
 
@@ -22,6 +21,8 @@ X3Sync is a research proof-of-concept I built that aggregates free-tier cloud st
 Free-tier cloud storage is everywhere but fragmented. 15GB here, 2GB there, 10GB somewhere else. Nobody combines them, and nobody encrypts them properly before upload either — you're trusting Google/Dropbox/whoever with plaintext access to your files by default.
 
 X3Sync tries to fix both problems at once: aggregate the free tiers into one usable pool, and make sure no provider — or even the coordination layer itself, depending on mode — ever sees your plaintext.
+
+---
 
 ## What's actually in it
 
@@ -39,6 +40,11 @@ I benchmarked both — Sovereign Mode actually has *lower* time-to-first-byte (~
 
 **A serverless coordination layer.** Runs entirely on Cloudflare Workers, within the 128MB memory cap, using the Streams API so files of arbitrary size can pass through without ever being materialized in memory.
 
+> Decryption mode is a per-request client parameter, defaulting to Sovereign Mode. Pick Edge only when you trust the coordination infra and want faster sustained throughput on large files.
+{: .prompt-tip }
+
+---
+
 ## Numbers that mattered
 
 - zstd gets up to **69.4x** compression on source code (88%+ on JSON/text)
@@ -47,6 +53,8 @@ I benchmarked both — Sovereign Mode actually has *lower* time-to-first-byte (~
 - At RF=2 replication, **100% retrieval success** under single-provider failure, with only **83ms** failover overhead
 
 The whole thing aggregates to 27GB of free capacity across three providers in the current PoC.
+
+---
 
 ## Where it's headed
 
